@@ -2,10 +2,12 @@ package com.dbkynd.velocityplayerlist;
 
 import com.google.inject.Inject;
 import com.velocitypowered.api.event.Subscribe;
+import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.event.proxy.ProxyPingEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.server.ServerPing;
+import org.bstats.velocity.Metrics;
 
 @Plugin(
         id = "velocityplayerlist",
@@ -14,11 +16,18 @@ import com.velocitypowered.api.proxy.server.ServerPing;
         authors = {"DBKynd"}
 )
 public class Velocityplayerlist {
+    Metrics.Factory metricsFactory;
     ProxyServer server;
 
     @Inject
-    public void VelocityInit(ProxyServer server) {
+    public void VelocityInit(ProxyServer server, Metrics.Factory metricsFactory) {
         this.server = server;
+        this.metricsFactory = metricsFactory;
+    }
+
+    @Subscribe
+    public void onProxyInitialization(ProxyInitializeEvent event) {
+        metricsFactory.make(this, 13330);
     }
 
     @Subscribe
