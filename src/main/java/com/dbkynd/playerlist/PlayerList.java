@@ -1,4 +1,4 @@
-package com.dbkynd.velocityplayerlist;
+package com.dbkynd.playerlist;
 
 import com.google.inject.Inject;
 import com.velocitypowered.api.event.Subscribe;
@@ -10,12 +10,12 @@ import com.velocitypowered.api.proxy.server.ServerPing;
 import org.bstats.velocity.Metrics;
 
 @Plugin(
-        id = "velocityplayerlist",
-        name = "Velocity Player List",
+        id = "playerlist",
+        name = "Player List",
         version = BuildConstants.VERSION,
         authors = {"DBKynd"}
 )
-public class Velocityplayerlist {
+public class PlayerList {
     Metrics.Factory metricsFactory;
     ProxyServer server;
 
